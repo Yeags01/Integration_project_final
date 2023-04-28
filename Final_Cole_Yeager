@@ -1,0 +1,162 @@
+"""
+Hello, bellow is the code for my madlib integration project.
+"""
+
+__author__ = "Cole Yeager"
+
+
+def intro():
+    """Intro"""
+
+    print("Hello, Im Cole Yeager and welcome to my MadLib.")
+    print("Thank you and have fun ", end=":)")
+    print("")
+
+
+def input_number(prompt):
+    """
+    This is the error blocker for ints and a miss input counter
+    that kicks you out of the program after 3 failed attempts.
+    :param prompt: the prompt for the input function
+    :return: the number the user enters that is a valid integer
+    """
+    fail_counter = 0
+    while True:
+        try:
+            user_input = int(input(prompt))
+        except ValueError:
+            fail_counter = fail_counter + 1
+            if fail_counter == 1:
+                print("That's not an accepted number, try again. :)")
+                continue
+            elif fail_counter == 2:
+                print("OK... that's not an accepted number again... "
+                      "I'll give you one more chance.")
+                continue
+            elif fail_counter == 3:
+                print("That's it, its clear you don't want to play... bye.")
+                break
+        else:
+            return user_input
+
+
+def main():
+    """This is the main menu to pick what story you would like.
+    :param: while send_it is true, run the menu and ask for an input
+    :return:the story chosen in the menu 
+    """
+
+    intro()
+    send_it = True
+    while send_it:
+        print("What story do you want to see?")
+        print("Track 1? math/ sprint 1 (1)")
+        print("Track 2? story/ sprint 2 (2) ")
+        track = input_number("Or try for secret ending?)(3)")
+        if track == 1:
+            story1()
+            send_it = False
+        elif track == 2:
+            story2()
+            send_it = False
+        elif track == 3:
+            story3()  # None is just an empty memory space in python
+            send_it = False
+        else:
+            print("You dont get to play, good-bye")
+            send_it = False
+
+
+def story1():
+    """
+    The math part and the requirements from sprint 1
+    that uses the error blocker
+    :param : Input a set of numbers
+    :return: Different print statements dependent on the numbers chosen
+    """
+
+    num1 = input_number("Pick number 0-9: ")
+    num2 = input_number("Pick number 0-9: ")
+    num3 = input_number("Pick number 0-9: ")
+    num4 = num1 + num2
+    num5 = num2 - num3
+    num6 = num3 % num1
+    num7 = num5 ** num6
+    num8 = num3 / num2
+    num9 = num1 // num5
+    if num1 > num6 or num1 != num9:
+        print("Math" * 5)
+        print(num4 + num7)
+    else:
+        print(num9 - num8)
+        print("Numbers" + "part", sep="-")
+
+
+def story2():
+    """Ask for a list of inputs to determine the story printed
+    :param : Input a set of numbers
+    :return: Different stories depending on the option chosen
+    """
+
+    print("Thank you for  picking the story route. Before the story can be "
+          "told, we are going to need a few questions answered from you.")
+    pick_up = input_number("Do you pick up the phone? (1=Yes,2=No):")
+    time_travel = input_number("Would you rather be super rich or "
+                               "a time traveler? ((1)=Rich,(2)= Time):")
+
+    if time_travel != 1:
+        story3()
+    while pick_up != 1:
+        print("You press decline on the call falling right back to sleep")
+        print("in fact you sleep so peacefully, you never wake back up")
+        print("R.I.P. the boy... A.K.A- you")
+        break
+    else:
+        print(
+            "You were laying in bed and out of the blue you get a phone call. "
+            "picking it up you hear the voice to the Nigerian prince you "
+            "sent $10000 to a few months ago. ")
+        print("Thanking you for helping him in a time of need, he informs you "
+              "that he just wired you over 100 times the amount of money you "
+              "lent him back into your account.")
+        print("You then go on to become Bat-Man. Thank you and goodnight")
+
+
+def story3():
+    """Ask the user to put in a list of numbers and depending on the
+     on what numbers are put in.
+     :param : Input a set of numbers
+    :return: Different print statements dependent on the years chosen
+    """
+
+    year1 = input_number("Pick a year:")
+    year2 = input_number("Pick another year:")
+    year3 = input_number("Do it a third time:")
+    year4 = input_number("OK last year, I promise:")
+    for year in range(4):
+        if (year1 == -1 or year2 == 1776 or year3 == 0) and not year4 == 2020:
+            print(
+                "Congrats, you unlocked the secret ending."
+                " To get this you are either absolutely awsome,"
+                "looked at the code to get the right answers,"
+                "or its me playing it. in that case...")
+            print("HI ME :)  :)  :)   :)  :)  :)  :)  :) :)")
+            print("Anyway, you type in your years are are sent off into time."
+                  "And if you happen to have gotten this by randomly picking"
+                  " -1 in the correct spot...we need to be best friends. XD")
+            break
+        elif year1 >= 0 and year2 >= 0 and year3 >= 0 and year4 >= 0:
+            print("just as you press enter on the keypad of the time machine,"
+                  " the door closes, flinging you all over space and time"
+                  " to enjoy your crazy journey.")
+            break
+        else:
+            print("WHAT EVER YOU ENTERED CAUSED"
+                  " THE TIME MACHINE TO GO CRAZY AND CREATE A BLACK HOLE!!!!!")
+
+            print("Thank you for playing, and game over not just to you,"
+                  " but to the entire solar system as well. :)")
+            break
+
+
+main()
